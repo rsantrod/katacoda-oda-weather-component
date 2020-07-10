@@ -1,0 +1,24 @@
+{
+  "name": "weather-component",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "bots-node-sdk": "bots-node-sdk",
+    "help": "npm run bots-node-sdk -- --help",
+    "prepack": "npm run bots-node-sdk -- --pack --dry-run",
+    "start": "npm run bots-node-sdk -- --service ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@oracle/bots-node-sdk": "^2.3.4",
+    "express": "^4.17.1"
+  },
+  "dependencies": {
+    "dateformat": "^3.0.3",
+    "request": "^2.88.2"
+  }
+}
