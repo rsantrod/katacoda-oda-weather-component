@@ -29,7 +29,6 @@ module.exports = {
     if(date){
       const diffTime = Math.abs(date.date - now);
       day = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-      console.log(day);
       if(day > 7){
           conversation.transition("dateerror"); //error
           done();
@@ -58,53 +57,46 @@ module.exports = {
           };
           return printData;
         }).catch(function(err){
-          console.log(err);
           conversation.transition("error");
           done();
         });
       }
     }).then(function(printData){
-      console.log(printData);
       var printArray = new Array();
       printArray.push(printData);
       conversation.variable(printVariable, printArray);
       conversation.transition("success");
       done();
     }).catch(function(err){
-      console.log(err);
       conversation.transition("error");
       done();
     });
   }
 };
 
-var currentWeather = function(location){
-  return new Promise(function(resolve, reject){
-    request('http://api.openweathermap.org/data/2.5/weather?q='+location.name+'&units=metric&appid='+openweather_api_key, { json: true }, (err, res, body) => {
-      if(err){
-        reject(err);
-      }else if(body.cod != "200"){
-        reject(body);
-      }else{
-        resolve(body);
-      }
-    });
-  });
-}
+	var currentWeather = function(location){
+	  return new Promise(function(resolve, reject){
+      request('http://api.openweathermap.org/data/2.5/weather?q='+location.name+'&units=metric&appid='+openweather_api_key, { json: true }, (err, res, body) => {
+        if(err){
+          reject(err);
+        }else{
+          resolve(body);
+        }
+      });
+	  });
+	}
 
-var sevenDaysForecast = function(lat, lon){
-  return new Promise(function(resolve, reject){
-    request('https://api.openweathermap.org/data/2.5/onecall?lat='+lat+'&lon='+lon+'&exclude=current,minutely,hourly&units=metric&appid='+openweather_api_key, { json: true }, (err, res, body) => {
-      if(err){
-        reject(err);
-      }else if(body.cod != "200"){
-        reject(body);
-      }else{
-        resolve(body);
-      }
-    });
-  });
-}
+	var sevenDaysForecast = function(lat, lon){
+	  return new Promise(function(resolve, reject){
+      request('https://api.openweathermap.org/data/2.5/onecall?lat='+lat+'&lon='+lon+'&exclude=current,minutely,hourly&units=metric&appid='+openweather_api_key, { json: true }, (err, res, body) => {
+        if(err){
+          reject(err);
+        }else{
+          resolve(body);
+        }
+      });
+	  });
+	}
 
 
 
