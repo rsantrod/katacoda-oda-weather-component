@@ -2,7 +2,7 @@
 
 var request = require('request');
 var dateFormat = require('dateformat');
-var openweather_api_key = "5f09356bd057d62b43aeeadc97886b4d";
+var openweather_api_key = "openweathermap_api_key";
  
 module.exports = {
   metadata: () => ({
