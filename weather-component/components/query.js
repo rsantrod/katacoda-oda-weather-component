@@ -1,7 +1,7 @@
 'use strict';
 
 var request = require('request');
-var dateFormat = require('dateformat');
+var moment = require('moment');
 var openweather_api_key = "openweathermap_api_key";
  
 module.exports = {
@@ -42,7 +42,7 @@ module.exports = {
           "temp": result.main.temp,
           "weather": result.weather[0].main,
           "icon": "http://openweathermap.org/img/wn/"+result.weather[0].icon+"@2x.png",
-          "date": dateFormat(today, "dd/mm/yyyy")
+          "date": moment().format('DD/MM/YYYY')
         };
         return printData;
       }else{
@@ -53,7 +53,7 @@ module.exports = {
             "temp": forecastResult.daily[day].temp.day,
             "weather": forecastResult.daily[day].weather[0].main,
             "icon": "http://openweathermap.org/img/wn/"+forecastResult.daily[day].weather[0].icon+"@2x.png",
-            "date": dateFormat(newDate, "dd/mm/yyyy")
+            "date": moment(newDate).format('DD/MM/YYYY')
           };
           return printData;
         }).catch(function(err){
